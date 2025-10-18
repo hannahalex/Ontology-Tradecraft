@@ -10,7 +10,10 @@
     #Class A320NEO_Spec
     ex:A320NEO_Spec a ex:ArtifactDesign ;
         rdfs:label "Airbus A320NEO Spec"; 
+        ex:isAbout ex:A320NEO;
         ex:hasManufactuer ex:Airbus; 
+        ex:hasLength "123.3"^^xsd:decimal  ;
+        ex:hasTailHeightFt "39.6"^^xsd:decimal ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .  
     #Class Fixed Wing
@@ -19,6 +22,7 @@
         ex:hasContiuantPart ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
         ex:hasManufactuer ex:Airbus;
         ex:hasLength "123.3"^^xsd:decimal  ;
+        ex:hasTailHeightFt "39.6"^^xsd:decimal ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .     
 
@@ -45,8 +49,8 @@
         rdfs:label "knots";
         skos:defintion "one nautical mile per hour" .
     
-    ex:Knots ex:isMeasurementUnitof ex:A3211_111_design.
-
+    ex:Knots ex:isMeasurementUnitof ex:A321_111_MaxApproachDesign.
+    ex:A321_111_MaxApproachDesign ex:isMeasurementUnitof ex:knots.
     #the design is a quality, that has
     ex:A321_111_MaxApproachDesign a obo:BFO_000019 ;
         rdfs:label "Max approach speed";
@@ -78,19 +82,19 @@
 #188,189,229
 
 #3 SOC roles of Aerospace Enginer 
-ex:SOC_Aerospace_Enginer1 a ex:obo:BFO_0000023;
+ex:SOC_Aerospace_Engineer1 a ex:obo:BFO_0000023;
     rdfs:label "SOC Aerospace Engineer 1" ;
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person .
 
-ex:SOC_Aerospace_Enginer2 a ex:obo:BFO_0000023;
+ex:SOC_Aerospace_Engineer2 a ex:obo:BFO_0000023;
     rdfs:label "SOC Aerospace Engineer 1";
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person. 
 
-ex:SOC_Aerospace_Enginer3 a ex:obo:BFO_0000023;
+ex:SOC_Aerospace_Engineer3 a ex:obo:BFO_0000023;
     rdfs:label "SOC Aerospace Engineer 1" ;
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;

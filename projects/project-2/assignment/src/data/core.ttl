@@ -26,7 +26,7 @@ obo:BFO_0000040 a owl:Class;
 
 ###### Classes ###### 
 ex:ArtifactDesign a owl:Class ;
-    rdfs:subClassOf obo:BFO_0000020 ;
+    rdfs:subClassOf obo:BFO_0000031 ;
     rdfs:label "Artifact Design"; 
     skos:definition "A design " .
 
@@ -132,6 +132,6 @@ ex:hasLengthFT a owl:DatatypeProperty;
 
 ex:hasTailHeightFt a owl:DatatypeProperty;
     rdfs:range xsd:decimal; 
-    rdfs:label "has Tail height";
+    rdfs:label "has Tail Height Ft ";
     skos:definition "The height in feet" . 
 
