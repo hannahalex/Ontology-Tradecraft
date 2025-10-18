@@ -16,6 +16,11 @@
         ex:hasTailHeightFt "39.6"^^xsd:decimal ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .  
+
+    ex:A320NEO_Engine1 a ex:JetEngine;
+        rdfs:label "A320NEO_Engine1" .
+    ex:A320NEO_Engine2  a ex:JetEngine ;
+        rdfs:label "A320NEO_Eninge2" .
     #Class Fixed Wing
     ex:A320NEO a ex:FixedWing ;
         rdfs:label "Airbus A320 NEO";
@@ -26,10 +31,7 @@
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .     
 
-    ex:A320NEO_Engine1 a ex:JetEngine;
-        rdfs:label "A320NEO_Engine1" .
-    ex:A320NEO_Engine2  a ex:JetEngine ;
-        rdfs:label "A320NEO_Eninge2" .
+  
 
 ####### TASK 2 #######
     #A321_111 is a Fixedwing??
@@ -42,7 +44,7 @@
     #it has a design
     ex:A3211_111_design a ex::ArtifactDesign; 
         rdfs:label "A321_111 design";
-        ex:isAbout ex:A321_111;
+        ex:isAbout ex:A321-111;
         ex:prescribes ex:A321_111_MaxApproachDesign .
 
     ex:knots a ex:MeasurementUnit ;
@@ -89,19 +91,19 @@ ex:SOC_Aerospace_Engineer1 a ex:obo:BFO_0000023;
     ex:inheresIn ex:Person .
 
 ex:SOC_Aerospace_Engineer2 a ex:obo:BFO_0000023;
-    rdfs:label "SOC Aerospace Engineer 1";
-    skos:defintion "Aerospace Engineer defintion 1 ";
+    rdfs:label "SOC Aerospace Engineer 2";
+    skos:defintion "Aerospace Engineer defintion 2 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person. 
 
 ex:SOC_Aerospace_Engineer3 a ex:obo:BFO_0000023;
-    rdfs:label "SOC Aerospace Engineer 1" ;
-    skos:defintion "Aerospace Engineer defintion 1 ";
+    rdfs:label "SOC Aerospace Engineer 3" ;
+    skos:defintion "Aerospace Engineer defintion 3 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person. 
 
 ex:Person a ex:GenericPerson;
-    rdfs:label "a perosn ".
+    rdfs:label "Person ".
 
 #patterns 
 ex:ActofAircraftProcessing_soc a ex:ActofAircraftProcessing ;
@@ -118,23 +120,23 @@ ex:AdaptabilityEvaluation_soc a ex:AdaptabilityEvaluation;
 ex:Area_US 
         rdfs:label "United States".
 #1
-ex:OCC_AerospaceEnginer_1 a obo:BFO_0000023 ;
-    rdfs:label "OCC Aerospace Engineer entry 1";
+ex:OCC_AerospaceEngineer_1 a obo:BFO_0000023 ;
+    rdfs:label "OCC Aerospace Engineer 1";
     skos:definition "OCC Aerospace Engineer entry 1";
     ex:oGroup "broad"^^xsd:string ;
     ex:ownCode "1235"^^xsd:int;
     ex:isAbout ex::ArtifactDesign.
-ex:OCC_AerospaceEnginer_1_measurement a ex:ActofMeasuring;
+ex:OCC_AerospaceEngineer_1_measurement a ex:ActofMeasuring;
     rdfs:label "Act of measuring for total employment 1".
 ex:TotalEmployment_AE1 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 1";
     ex:numericValue "68440"^^xsd:int;
-    ex:isOutputOf ex:OCC_AerospaceEnginer_1_measurement;
+    ex:isOutputOf ex:OCC_AerospaceEngineer_1_measurement;
     ex:hasArea ex:Area_US.
 
 #2
-ex:OCC_AerospaceEnginer_2 a obo:BFO_0000023;
-    rdfs:label "OCC Aerospace Engineer entry 2";
+ex:OCC_AerospaceEngineer_2 a obo:BFO_0000023;
+    rdfs:label "OCC Aerospace Engineer 2";
     skos:defintion "OCC Aerospace Engineer entry 2";
     ex:oGroup "detailed"^^xsd:string ;
     ex:ownCode "1235"^^xsd:int;
@@ -144,21 +146,21 @@ ex:OCC_AerospaceEnginer_2_measurement a ex:ActofMeasuring;
 ex:TotalEmployment_AE2 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 2";
     ex:numericValue "68440"^^xsd:int;
-    ex:isOutputOf ex:OCC_AerospaceEnginer_2_measurement;
+    ex:isOutputOf ex:OCC_AerospaceEngineer_2_measurement;
     ex:hasArea ex:Area_US.
 
 
 #3
-ex:OCC_AerospaceEnginer_3 a obo:BFO_0000023;
-    rdfs:label "OCC Aerospace Engineer entry 3";
+ex:OCC_AerospaceEngineer_3 a obo:BFO_0000023;
+    rdfs:label "OCC Aerospace Engineer 3";
     skos:definition "OCC Aerospace Engineer entry 3";
     ex:oGroup "detailed"^^xsd:string ;
     ex:ownCode "1235"^^xsd::string;
     ex:isAbout ex::ArtifactDesign.
-ex:OCC_AerospaceEnginer_3_measurement a ex:ActofMeasuring;
+ex:OCC_AerospaceEngineer_3_measurement a ex:ActofMeasuring;
     rdfs:label "Act of measuring for total employment 3".
 ex:TotalEmployment_AE3 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 3";
     ex:numericValue "9060"^^xsd:int;
-    ex:isOutputOf ex:OCC_AerospaceEnginer_3_measurement;
+    ex:isOutputOf ex:OCC_AerospaceEngineer_3_measurement;
     ex:hasArea ex:Area_US.

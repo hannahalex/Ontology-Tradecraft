@@ -132,6 +132,6 @@ ex:hasLengthFT a owl:DatatypeProperty;
 
 ex:hasTailHeightFt a owl:DatatypeProperty;
     rdfs:range xsd:decimal; 
-    rdfs:label "has Tail Height Ft ";
-    skos:definition "The height in feet" . 
+    rdfs:label "has Tail HeightFt ";
+    skos:definition "The tail height in feet" . 
 
