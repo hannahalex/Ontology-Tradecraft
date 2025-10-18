@@ -5,18 +5,19 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ####### TASK 1 #######
+    ex:Airbus rdfs:label "Airbus" .
+
     #Class A320NEO_Spec
     ex:A320NEO_Spec a ex:ArtifactDesign ;
         rdfs:label "Airbus A320NEO Spec"; 
-        ex:hasContinuantPart ex:A320NEO_Engine1, ex:A320NEO_Engine2 .
-        ex:hasManufactuer rdfs:label "Airbus" ;
+        ex:hasManufactuer ex:Airbus; 
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .  
     #Class Fixed Wing
     ex:A320NEO a ex:FixedWing ;
         rdfs:label "Airbus A320 NEO";
-        ex:hasContiuantPart ex:A320NEO_Engine1, ex:A320NEO_Engine2 .
-        ex:hasManufactuer rdfs:label "Airbus";
+        ex:hasContiuantPart ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
+        ex:hasManufactuer ex:Airbus;
         ex:hasLength "123.3"^^xsd:decimal  ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .     
@@ -28,8 +29,8 @@
 
 ####### TASK 2 #######
     #A321_111 is a Fixedwing??
-    ex:A321_111 a ex:FixedWing ;
-        rdfs:label "Aibus A321-111" ;
+    ex:A321-111 a ex:FixedWing ;
+        rdfs:label "Airbus A321-111" ;
         ex:prescribes ex:A321_111_MaxApproachDesign .
         ex:hasManufactuer rdfs:label "Airbus" .
     #why can't i change these 2 around?
@@ -57,19 +58,19 @@
 
     ex:A321_111_1 a ex:TestProcess; 
         ex:isTemporalPartof ex:A321_111_Testing;
-        ex:numericValue "139"^^xsd:decimal . 
+        ex:numericValue "139"^^xsd:int . 
     ex:A321_111_2 a ex:TestProcess; 
         ex:isTemporalPartof ex:A321_111_Testing;
-        ex:numericValue "139"^^xsd:decimal .
+        ex:numericValue "139"^^xsd:int . 
     ex:A321_111_3 a ex:TestProcess; 
        ex:isTemporalPartof ex:A321_111_Testing;
-        ex:numericValue "139"^^xsd:decimal .
+        ex:numericValue "139"^^xsd:int . 
     ex:A321_111_4 a ex:TestProcess; 
        ex:isTemporalPartof ex:A321_111_Testing ;
-        ex:numericValue "139"^^xsd:decimal . 
+        ex:numericValue "139"^^xsd:int. 
     ex:A321_111_5 a ex:TestProcess ;
        ex:isTemporalPartof ex:A321_111_Testing;
-        ex:numericValue "139"^^xsd:decimal . 
+        ex:numericValue "139"^^xsd:int.  
 
 ####### TASK 3 #######
 #ThreeThree SOC_TITLE entries mention “Aerospace Engineer”; 
@@ -77,19 +78,19 @@
 #188,189,229
 
 #3 SOC roles of Aerospace Enginer 
-ex:SOC_AerospaceEnginer1 a ex:obo:BFO_0000023;
+ex:SOC_Aerospace_Enginer1 a ex:obo:BFO_0000023;
     rdfs:label "SOC Aerospace Engineer 1" ;
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person .
 
-ex:SOC_AerospaceEnginer2 a ex:obo:BFO_0000023;
+ex:SOC_Aerospace_Enginer2 a ex:obo:BFO_0000023;
     rdfs:label "SOC Aerospace Engineer 1";
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person. 
 
-ex:SOC_AerospaceEnginer3 a ex:obo:BFO_0000023;
+ex:SOC_Aerospace_Enginer3 a ex:obo:BFO_0000023;
     rdfs:label "SOC Aerospace Engineer 1" ;
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
@@ -123,7 +124,7 @@ ex:OCC_AerospaceEnginer_1_measurement a ex:ActofMeasuring;
     rdfs:label "Act of measuring for total employment 1".
 ex:TotalEmployment_AE1 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 1";
-    ex:numericValue "68,440"^^xsd:integer;
+    ex:numericValue "68440"^^xsd:int;
     ex:isOutputOf ex:OCC_AerospaceEnginer_1_measurement;
     ex:hasArea ex:Area_US.
 
@@ -138,7 +139,7 @@ ex:OCC_AerospaceEnginer_2_measurement a ex:ActofMeasuring;
     rdfs:label "Act of measuring for total employment 2".
 ex:TotalEmployment_AE2 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 2";
-    ex:numericValue "68,440"^^xsd:integer;
+    ex:numericValue "68440"^^xsd:int;
     ex:isOutputOf ex:OCC_AerospaceEnginer_2_measurement;
     ex:hasArea ex:Area_US.
 
@@ -154,6 +155,6 @@ ex:OCC_AerospaceEnginer_3_measurement a ex:ActofMeasuring;
     rdfs:label "Act of measuring for total employment 3".
 ex:TotalEmployment_AE3 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 3";
-    ex:numericValue "9060"^^xsd:intger;
+    ex:numericValue "9060"^^xsd:int;
     ex:isOutputOf ex:OCC_AerospaceEnginer_3_measurement;
     ex:hasArea ex:Area_US.

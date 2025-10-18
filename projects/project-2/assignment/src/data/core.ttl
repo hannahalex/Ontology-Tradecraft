@@ -25,8 +25,8 @@ obo:BFO_0000040 a owl:Class;
     rdfs:label "material entity" . 
 
 ###### Classes ###### 
-ex:exrtifactDesign a owl:Class ;
-    rdfs:subClassOf obo:BFO_0000040 ;
+ex:ArtifactDesign a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000020 ;
     rdfs:label "Artifact Design"; 
     skos:definition "A design " .
 
@@ -122,7 +122,7 @@ ex:hasModelBADA a owl:DatatypeProperty;
 
  ex:hasModelFAA a owl:DatatypeProperty;
     rdfs:range xsd:decimal; 
-    rdfs:label "has Model FAA ";
+    rdfs:label "has Model FAA";
     skos:definition "a FAA model" . 
 
 ex:hasLengthFT a owl:DatatypeProperty;
