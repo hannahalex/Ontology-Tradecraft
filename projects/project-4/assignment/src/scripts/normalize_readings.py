@@ -6,9 +6,9 @@ import datetime
 
 
 #Define input/output locations
-IN_A = "../data/sensor_A.csv"
-IN_B = "../data/sensor_B.json"
-OUT  = "../data/readings_normalized.csv"
+IN_A = Path("src/data/sensor_A.csv")
+IN_B = Path("src/data/sensor_B.json")
+OUT  = Path("src/data/readings_normalized.csv")
 
 
 #Load Sensor A (CSV)
