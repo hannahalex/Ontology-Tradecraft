@@ -3,6 +3,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
 
 ####### TASK 1 #######
     ex:Airbus rdfs:label "Airbus" .
@@ -152,7 +153,7 @@ ex:TotalEmployment_AE2 a ex:TotalEmployment;
 
 #3
 ex:OCC_AerospaceEngineer_3 a obo:BFO_0000023;
-    rdfs:label "OCC Aerospace Engineer 3";
+    rdfs:label "OCC Aerospace Engineer entry 3";
     skos:definition "OCC Aerospace Engineer entry 3";
     ex:oGroup "detailed"^^xsd:string ;
     ex:ownCode "1235"^^xsd::string;

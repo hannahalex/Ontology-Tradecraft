@@ -5,18 +5,20 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix ex:    <https://example.com/project1#> .
 @prefix obo:  <http://purl.obolibrary.org/obo/> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
 
 ex: a owl:Ontology;
     rdfs:label "Project 2 Ontology" ;
     skos:definition "Vocabulary for project 2."  .
 
 ###### From BFO ###### 
+#make CCO compliant
 obo:BFO_0000015 a owl:Class;
     rdfs:label "process" .
 obo:BFO_0000019 a owl:Class;
     rdfs:label "quality".
-obo:BFO_0000020 a owl:Class;
-    rdfs:label "specifically dependent contiuant".
+ <http://purl.obolibrary.org/obo/BFO_0000020> a owl:Class;
+    rdfs:label "specifically dependent continuant".
 obo:BFO_0000023 a owl:Class;
     rdfs:label "role".
 obo:BFO_0000031 a owl:Class;
@@ -24,8 +26,9 @@ obo:BFO_0000031 a owl:Class;
 obo:BFO_0000040 a owl:Class;
     rdfs:label "material entity" . 
 
+
 ###### Classes ###### 
-ex:ArtifactDesign a owl:Class ;
+cco:ont00000319 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000031 ;
     rdfs:label "Artifact Design"; 
     skos:definition "A design " .
@@ -71,11 +74,11 @@ ex:TotalEmployment a owl:Class;
     skos:definition "A quality of total employment" .
 
 ###### Object Properties ###### 
-ex:hasContinuantPart a owl:ObjectProperty;
+obo:BFO_0000178 rdf:type owl:ObjectProperty;
     rdfs:label "has continuant part"; 
     skos:definition "Relates a continuat to one if its continuant parts" .
 
-ex:isAbout a owl:ObjectProperty ;
+cco:ont00001808 a owl:ObjectProperty ;
     rdfs:label "is About"; 
     skos:definition "Relates to something" .
 
@@ -83,28 +86,30 @@ ex:isTemporalPartof a owl:ObjectProperty;
     rdfs:label "is Temporal part of"; 
     skos:definition "Relates an occurent to a larger occurant which is a temporal part" .
 
-ex:isMeasurementUnitof a owl:ObjectProperty;
+cco:ont00000120 a owl:ObjectProperty;
     rdfs:label " is measurement unit of"; 
     skos:definition "Relates a unit specification "  .
 
-ex:prescribes a owl:ObjectProperty;
+cco:ont00001942 a owl:ObjectProperty;
     rdfs:label "prescribes"; 
     skos:definition "Relates a design as a contraint." .
-
-ex:quality a owl:ObjectProperty;
+cco:ont00001947 a owl:ObjectProperty;
     rdfs:label "quality"; 
     skos:definition "A measurement of an entity. " . 
 
 ex:hasArea a owl:ObjectProperty; 
     rdfs:label "has Area"; 
     skos:definition "Relates to the length times width." . 
-
-ex:realizes a owl:ObjectProperty;
+obo:BFO_0000055 a owl:ObjectProperty;
     rdfs:label "realizes";
     skos:defintion "realizations".
-ex:isOutputOf a owl:ObjectProperty;
+cco:ont00001816 a owl:ObjectProperty;
     rdfs:label "is output of ";
     skos:definition "the outpuf of some process/measurement".
+
+obo:BFO_0000197 a owl:ObjectProperty; 
+    rdfs:label "inheres in";
+    skos:definition "b inheres in c =Def b is a specifically dependent continuant & c is an independent continuant that is not a spatial region & b specifically depends on c".
     
 ###### Datatype Properties ###### 
 ex:oGroup a owl:DatatypeProperty;
