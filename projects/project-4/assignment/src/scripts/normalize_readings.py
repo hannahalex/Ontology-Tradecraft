@@ -26,7 +26,7 @@ df_a = df_a[[c for c in ["artifact_id","sdc_kind","unit_label","value","timestam
 
 
 # Load the sensor_B.json file
-sensor_b_path =  Path("/Users/davin/UB/PHD/fall25/Ontology-Tradecraft/projects/project-4/assignment/src/data/sensor_B.json")
+sensor_b_path =  Path("src/data/sensor_B.json")
 with open(sensor_b_path, "r", encoding="utf-8") as f:
     data = json.load(f)
 
