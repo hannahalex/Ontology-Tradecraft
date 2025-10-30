@@ -6,9 +6,9 @@ import datetime
 
 
 #Define input/output locations
-IN_A = Path("/Users/davin/UB/PHD/fall25/Ontology-Tradecraft/projects/project-4/assignment/src/data/sensor_A.csv")
-IN_B = Path("/Users/davin/UB/PHD/fall25/Ontology-Tradecraft/projects/project-4/assignment/src/data/sensor_B.json")
-OUT  = Path("/Users/davin/UB/PHD/fall25/Ontology-Tradecraft/projects/project-4/assignment/src/data/readings_normalized.csv")
+IN_A = Path("../data/sensor_A.csv")
+IN_B = Path("../data/sensor_B.json")
+OUT  = Path("/..data/readings_normalized.csv")
 
 
 #Load Sensor A (CSV)
