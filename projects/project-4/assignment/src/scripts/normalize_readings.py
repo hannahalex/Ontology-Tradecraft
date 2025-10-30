@@ -83,6 +83,7 @@ UNIT_MAP = {
     "celsius": "C", "°c": "C", "C": "C",
     "kilogram": "kg", "KG": "kg", "kg": "kg",
     "meter": "m", "M": "m", "m": "m",
+    "pressure": "kpa", "psi":"kpa",
 }
 df["unit_label"] = df["unit_label"].str.lower().map(UNIT_MAP).fillna(df["unit_label"])
 
