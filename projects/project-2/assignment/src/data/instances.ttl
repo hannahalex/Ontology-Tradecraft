@@ -25,14 +25,12 @@
     #Class Fixed Wing
     ex:A320NEO a ex:FixedWing ;
         rdfs:label "Airbus A320 NEO";
-        ex:hasContiuantPart ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
+        obo:BFO_0000178 ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
         ex:hasManufactuer ex:Airbus;
         ex:hasLength "123.3"^^xsd:decimal  ;
         ex:hasTailHeightFt "39.6"^^xsd:decimal ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
-        ex:hasModelBADA "Airbus A320-231"^^xsd:string .     
-
-  
+        ex:hasModelBADA "Airbus A320-231"^^xsd:string .       
 
 ####### TASK 2 #######
     #A321_111 is a Fixedwing??
@@ -46,14 +44,15 @@
     ex:A3211_111_design a ex::ArtifactDesign; 
         rdfs:label "A321_111 design";
         ex:isAbout ex:A321-111;
-        ex:prescribes ex:A321_111_MaxApproachDesign .
+        ex:prescribes ex:A321_111_MaxApproachDesign ;
+        ex:prescribe ex:knots .
 
     ex:knots a ex:MeasurementUnit ;
         rdfs:label "knots";
-        skos:defintion "one nautical mile per hour" .
-    
-    ex:Knots ex:isMeasurementUnitof ex:A321_111_MaxApproachDesign.
-    ex:A321_111_MaxApproachDesign ex:isMeasurementUnitof ex:knots.
+        skos:defintion "one nautical mile per hour" ;
+        ex:ex:isMeasurementUnitof ex:A321_111_MaxApproachDesign;
+        ex:numericValue "142"^^xsd:decimal . 
+
     #the design is a quality, that has
     ex:A321_111_MaxApproachDesign a obo:BFO_000019 ;
         rdfs:label "Max approach speed";
@@ -86,19 +85,19 @@
 
 #3 SOC roles of Aerospace Enginer 
 ex:SOC_Aerospace_Engineer1 a ex:obo:BFO_0000023;
-    rdfs:label "SOC Aerospace Engineer 1" ;
+    rdfs:label "SOC aerospace engineer 1" ;
     skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person .
 
 ex:SOC_Aerospace_Engineer2 a ex:obo:BFO_0000023;
-    rdfs:label "SOC Aerospace Engineer 2";
+    rdfs:label "SOC aerospace engineer 2";
     skos:defintion "Aerospace Engineer defintion 2 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person. 
 
 ex:SOC_Aerospace_Engineer3 a ex:obo:BFO_0000023;
-    rdfs:label "SOC Aerospace Engineer 3" ;
+    rdfs:label "SOC aerospace engineer 3" ;
     skos:defintion "Aerospace Engineer defintion 3 ";
     ex:isAbout ex:ArtifactDesign;
     ex:inheresIn ex:Person. 
@@ -122,7 +121,7 @@ ex:Area_US
         rdfs:label "United States".
 #1
 ex:OCC_AerospaceEngineer_1 a obo:BFO_0000023 ;
-    rdfs:label "OCC Aerospace Engineer 1";
+    rdfs:label "OCC aerospace engineer 1";
     skos:definition "OCC Aerospace Engineer entry 1";
     ex:oGroup "broad"^^xsd:string ;
     ex:ownCode "1235"^^xsd:int;
@@ -137,7 +136,7 @@ ex:TotalEmployment_AE1 a ex:TotalEmployment;
 
 #2
 ex:OCC_AerospaceEngineer_2 a obo:BFO_0000023;
-    rdfs:label "OCC Aerospace Engineer 2";
+    rdfs:label "OCC aerospace engineer 2";
     skos:defintion "OCC Aerospace Engineer entry 2";
     ex:oGroup "detailed"^^xsd:string ;
     ex:ownCode "1235"^^xsd:int;
@@ -153,7 +152,7 @@ ex:TotalEmployment_AE2 a ex:TotalEmployment;
 
 #3
 ex:OCC_AerospaceEngineer_3 a obo:BFO_0000023;
-    rdfs:label "OCC Aerospace Engineer entry 3";
+    rdfs:label "OCC aerospace engineer 3";
     skos:definition "OCC Aerospace Engineer entry 3";
     ex:oGroup "detailed"^^xsd:string ;
     ex:ownCode "1235"^^xsd::string;

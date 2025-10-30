@@ -14,17 +14,23 @@ ex: a owl:Ontology;
 ###### From BFO ###### 
 #make CCO compliant
 obo:BFO_0000015 a owl:Class;
-    rdfs:label "process" .
+    rdfs:label "process" ;
+    skos:defintion "process ".
 obo:BFO_0000019 a owl:Class;
-    rdfs:label "quality".
- <http://purl.obolibrary.org/obo/BFO_0000020> a owl:Class;
-    rdfs:label "specifically dependent continuant".
+    rdfs:label "quality";
+    skos:defintion "quality".
+<http://purl.obolibrary.org/obo/BFO_0000020> a owl:Class;
+    rdfs:label "specifically dependent continuant";
+    skos:defintion "SDC".
 obo:BFO_0000023 a owl:Class;
-    rdfs:label "role".
+    rdfs:label "role";
+    skos:defintion "role".
 obo:BFO_0000031 a owl:Class;
-    rdfs:label "generically dependent continuant".
+    rdfs:label "generically dependent continuant";
+    skos:defintion "GDC".
 obo:BFO_0000040 a owl:Class;
-    rdfs:label "material entity" . 
+    rdfs:label "material entity" ;
+    skos:defintion "material entity ".
 
 
 ###### Classes ###### 

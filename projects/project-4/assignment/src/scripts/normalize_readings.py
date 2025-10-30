@@ -6,14 +6,13 @@ import datetime
 
 
 #Define input/output locations
-IN_A = Path("../data/sensor_A.csv")
-IN_B = Path("../data/sensor_B.json")
-OUT  = Path("/..data/readings_normalized.csv")
+IN_A = "../data/sensor_A.csv"
+IN_B = "../data/sensor_B.json"
+OUT  = "../data/readings_normalized.csv"
 
 
 #Load Sensor A (CSV)
-df_a = pd.read_csv(IN_A, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])
-# Map columns to canonical names (EDIT to match the actual headers)
+df_a = pd.read_csv(IN_A, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])# Map columns to canonical names (EDIT to match the actual headers)
 df_a = df_a.rename(columns={
     "Device Name": "artifact_id",
     "Reading Type": "sdc_kind",
