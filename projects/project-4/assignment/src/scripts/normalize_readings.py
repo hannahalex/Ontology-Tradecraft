@@ -19,7 +19,6 @@ df_a = df_a.rename(columns={
     "Units": "unit_label",
     "Reading Value": "value",
     "Time (Local)": "timestamp",
-    
 })
 # Keep only canonical columns that exist
 df_a = df_a[[c for c in ["artifact_id","sdc_kind","unit_label","value","timestamp"] if c in df_a.columns]]
@@ -83,9 +82,10 @@ UNIT_MAP = {
     "celsius": "C", "°c": "C", "C": "C",
     "kilogram": "kg", "KG": "kg", "kg": "kg",
     "meter": "m", "M": "m", "m": "m",
-    "pressure": "kPa", "psi":"kPa", "kpa": "kPa", "Kpa":"kPa", "kPa":"kPa", "KPA":"kPa"
+    "pressure": "kPa", "psi": "kPa", "kpa": "kPa", "Kpa": "kPa", "kPa": "kPa", "KPA": "kPa"
 }
-df["unit_label"] = df["unit_label"].str.lower().map(UNIT_MAP).fillna(df["unit_label"])
+
+df["unit_label"] = df["unit_label"].str.map(UNIT_MAP).fillna(df["unit_label"])
 
 
 # Drop rows with missing critical values
