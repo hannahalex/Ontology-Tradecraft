@@ -9,7 +9,7 @@
 
 ex: a owl:Ontology;
     rdfs:label "Project 2 Ontology"@en;
-    skos:definition "Vocabulary for project 2."@en  .
+    skos:definition "Vocabulary for project 2"@en  .
 
 ###### From BFO ###### 
 #make CCO compliant

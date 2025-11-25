@@ -106,7 +106,7 @@ ex:AdaptabilityEvaluation a ex:AdaptabilityEvaluation;
 
 ####### TASK 4 #######
 #row179,180,220
-ex:Area_DC rdfs:label "United States"@en .
+ex:Area_DC rdfs:label "United Sttes"@en .
 #1
 ex:OCC_AerospaceEngineer_1 a ex:Role ;
     rdfs:label "OCC: Aerospace Engineer 1"@en ;
