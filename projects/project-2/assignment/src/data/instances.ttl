@@ -6,147 +6,161 @@
 @prefix cco: <https://www.commoncoreontologies.org/> .
 
 ####### TASK 1 #######
-    ex:Airbus rdfs:label "Airbus"@en . 
+    ex:Airbus rdfs:label "Airbus" .
 
+    #Class A320NEO_Spec
+    ex:A320NEO_Spec a ex:ArtifactDesign ;
+        rdfs:label "Airbus A320NEO Spec"; 
+        ex:isAbout ex:A320NEO;
+        ex:hasManufactuer ex:Airbus; 
+        ex:hasLength "123.3"^^xsd:decimal  ;
+        ex:hasTailHeightFt "39.6"^^xsd:decimal ;
+        ex:hasModelFAA "Airbus A320"^^xsd:string ;
+        ex:hasModelBADA "Airbus A320-231"^^xsd:string .  
+
+    ex:A320NEO_Engine1 a ex:JetEngine;
+        rdfs:label "A320NEO_Engine1" .
+    ex:A320NEO_Engine2  a ex:JetEngine ;
+        rdfs:label "A320NEO_Eninge2" .
+    #Class Fixed Wing
     ex:A320NEO a ex:FixedWing ;
-        rdfs:label "Airbus A320 NEO"@en ;
+        rdfs:label "Airbus A320 NEO";
         obo:BFO_0000178 ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
-        ex:hasManufacturer ex:Airbus ;
-        ex:hasLengthFT  "123.3"^^xsd:decimal  ;
+        ex:hasManufactuer ex:Airbus;
+        ex:hasLength "123.3"^^xsd:decimal  ;
         ex:hasTailHeightFt "39.6"^^xsd:decimal ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .       
 
-    
-    #Class A320NEO_Spec
-    ex:A320NEO_Spec a ex:ArtifactDesign ;
-        rdfs:label "Airbus A320NEO Spec"@en ; 
-        ex:isAbout ex:A320NEO;
-        ex:hasManufacturer ex:Airbus ;
-        ex:hasLengthFT "123.3"^^xsd:decimal  ;
-        ex:hasTailHeightFt "39.6"^^xsd:decimal ;
-        ex:hasModelFAA "Airbus A320"^^xsd:string ;
-        ex:hasModelBADA "Airbus A320-231"^^xsd:string.
-
-    ex:A320NEO_Engine1 a ex:JetEngine; rdfs:label "A320NEO_Engine1"@en  .
-    ex:A320NEO_Engine2  a ex:JetEngine ; rdfs:label "A320NEO_Eninge2" @en .
-    #Class Fixed Wing
-
 ####### TASK 2 #######
     #A321_111 is a Fixedwing??
-    ex:A321-111 a ex:FixedWing;
-        rdfs:label "Airbus A321-111"@en;
-        ex:hasManufacturer ex:Airbus ;
-        ex:prescribes ex:A321_111_MaxApproachDesign ;
-        ex:numericValue "142"^^xsd:decimal . 
-
-    ex:knots a ex:MeasurementUnit ;
-        rdfs:label "knots"@en ;
-        skos:defintion "one nautical mile per hour"@en .
-   
+    ex:A321-111 a ex:FixedWing ;
+        rdfs:label "Airbus A321-111" ;
+        ex:prescribes ex:A321_111_MaxApproachDesign .
+        ex:hasManufactuer rdfs:label "Airbus" .
+    #why can't i change these 2 around?
+    
     #it has a design
     ex:A3211_111_design a ex::ArtifactDesign; 
-        rdfs:label "A321_111 design"@en ;
+        rdfs:label "A321_111 design";
         ex:isAbout ex:A321-111;
-        ex:prescribes ex:A321_111_MaxApproachDesign .
+        ex:prescribes ex:A321_111_MaxApproachDesign ;
+        ex:prescribe ex:knots .
+
+    ex:knots a ex:MeasurementUnit ;
+        rdfs:label "knots";
+        skos:defintion "one nautical mile per hour" ;
+        ex:ex:isMeasurementUnitof ex:A321_111_MaxApproachDesign;
+        ex:numericValue "142"^^xsd:decimal . 
 
     #the design is a quality, that has
     ex:A321_111_MaxApproachDesign a obo:BFO_000019 ;
-        rdfs:label "Max approach speed"@en .
-
-    ex:knots ex:ex:isMeasurementUnitof ex:A321_111_MaxApproachDesign .
-    ex:A321_111_MaxApproachDesign ex:isMeasurementUnitof ex:Knots . 
-
+        rdfs:label "Max approach speed";
+        ex:numericValue "142"^^xsd:decimal . 
 
     #there are tests that are run for A321_111 with values
     ex:A321_111_Testing a ex:TestProcess;
-        rdfs:lable "The five test of A321_111"@en.
+        rdfs:lable "The five test of A321_111" .
 
-    ex:A321_111_1 a ex:TestProcess; ex:isTemporalPartof ex:A321_111_Testing; ex:numericValue "139"^^xsd:decimal . 
-    ex:A321_111_2 a ex:TestProcess; ex:isTemporalPartof ex:A321_111_Testing; ex:numericValue "139"^^xsd:decimcal . 
-    ex:A321_111_3 a ex:TestProcess; ex:isTemporalPartof ex:A321_111_Testing; ex:numericValue "139"^^xsd:decimal . 
-    ex:A321_111_4 a ex:TestProcess; ex:isTemporalPartof ex:A321_111_Testing; ex:numericValue "139"^^xsd:decimal . 
-    ex:A321_111_5 a ex:TestProcess; ex:isTemporalPartof ex:A321_111_Testing; ex:numericValue "139"^^xsd:decimal .  
+    ex:A321_111_1 a ex:TestProcess; 
+        ex:isTemporalPartof ex:A321_111_Testing;
+        ex:numericValue "139"^^xsd:int . 
+    ex:A321_111_2 a ex:TestProcess; 
+        ex:isTemporalPartof ex:A321_111_Testing;
+        ex:numericValue "139"^^xsd:int . 
+    ex:A321_111_3 a ex:TestProcess; 
+       ex:isTemporalPartof ex:A321_111_Testing;
+        ex:numericValue "139"^^xsd:int . 
+    ex:A321_111_4 a ex:TestProcess; 
+       ex:isTemporalPartof ex:A321_111_Testing ;
+        ex:numericValue "139"^^xsd:int. 
+    ex:A321_111_5 a ex:TestProcess ;
+       ex:isTemporalPartof ex:A321_111_Testing;
+        ex:numericValue "139"^^xsd:int.  
+
 ####### TASK 3 #######
 #ThreeThree SOC_TITLE entries mention “Aerospace Engineer”; 
 #provide a BFO-conformant model of these entries and their respective SOC definitions.
 #188,189,229
-ex:PersonBearer a ex:PersonGeneric ; rdfs:label "Person"@en .
 
 #3 SOC roles of Aerospace Enginer 
-ex:SOC_Aerospace_Engineer1 a ex:Role;
-    rdfs:label "SOC: Aerospace Engineer 1" @en;
-    skos:defintion "SOC Aerospace Engineer description 1"@en ;
+ex:SOC_Aerospace_Engineer1 a ex:obo:BFO_0000023;
+    rdfs:label "SOC aerospace engineer 1" ;
+    skos:defintion "Aerospace Engineer defintion 1 ";
     ex:isAbout ex:ArtifactDesign;
-    ex:inheresIn ex:PersonBearer .
+    ex:inheresIn ex:Person .
 
-ex:SOC_Aerospace_Engineer2 a ex:Role;
-    rdfs:label "SOC: Aerospace Engineer 2"@en ;
-    skos:defintion "SOC Aerospace Engineer description 2 "@en;
+ex:SOC_Aerospace_Engineer2 a ex:obo:BFO_0000023;
+    rdfs:label "SOC aerospace engineer 2";
+    skos:defintion "Aerospace Engineer defintion 2 ";
     ex:isAbout ex:ArtifactDesign;
-    ex:inheresIn ex:PersonBearer. 
+    ex:inheresIn ex:Person. 
 
-ex:SOC_Aerospace_Engineer3 a ex:Role;
-    rdfs:label "SOC: Aerospace Engineer 3"@en ;
-    skos:defintion "SOC Aerospace Engineer description 3 "@en ;
+ex:SOC_Aerospace_Engineer3 a ex:obo:BFO_0000023;
+    rdfs:label "SOC aerospace engineer 3" ;
+    skos:defintion "Aerospace Engineer defintion 3 ";
     ex:isAbout ex:ArtifactDesign;
-    ex:inheresIn ex:PersonBearer. 
+    ex:inheresIn ex:Person. 
 
+ex:Person a ex:GenericPerson;
+    rdfs:label "Person ".
 
 #patterns 
-ex:ActofAircraftProcessing_Pattern a ex:ActofAircraftProcessing ;
-    rdfs:label "pattern of act of aircraft processing"@en ;
-    ex:realizes ex:AdaptabilityEvaluation ;
-    ex:isAbout ex:ArtifactDesign. 
+ex:ActofAircraftProcessing_soc a ex:ActofAircraftProcessing ;
+    rdfs:label "pattern of act of aircraft processing" ;
+    ex:realizes ex:AdaptabilityEvaluation_soc .
 
-ex:AdaptabilityEvaluation a ex:AdaptabilityEvaluation;
-    rdfs:label " Adaptability evaluation "@en ;
+ex:AdaptabilityEvaluation_soc a ex:AdaptabilityEvaluation;
+    rdfs:label "an evaluation of Adaptability ";
     ex:isAbout ex:ArtifactDesign;
-    ex:isOutputOf ex:ActofAircraftProcessing_Pattern .
+    ex:isOutputOf ex:ActofAircraftProcessing_soc.
 
 ####### TASK 4 #######
 #row179,180,220
-ex:Area_DC rdfs:label "United Sttes"@en .
+ex:Area_US 
+        rdfs:label "United States".
 #1
-ex:OCC_AerospaceEngineer_1 a ex:Role ;
-    rdfs:label "OCC: Aerospace Engineer 1"@en ;
-    skos:definition "OCC Aerospace Engineer entry 1"@en ;
+ex:OCC_AerospaceEngineer_1 a obo:BFO_0000023 ;
+    rdfs:label "OCC aerospace engineer 1";
+    skos:definition "OCC Aerospace Engineer entry 1";
     ex:oGroup "broad"^^xsd:string ;
-    ex:ownCode "own_group_a"^^xsd:string;
+    ex:ownCode "1235"^^xsd:int;
     ex:isAbout ex::ArtifactDesign.
-ex:OCC_AE_1_measurement a ex:ActofMeasuring;
-    rdfs:label "Act of measuring for total employment 1"@en.
+ex:OCC_AerospaceEngineer_1_measurement a ex:ActofMeasuring;
+    rdfs:label "Act of measuring for total employment 1".
 ex:TotalEmployment_AE1 a ex:TotalEmployment;
-    rdfs:label "Total Employment for OCC AE 1"@en ;
-    ex:numericValue "68440"^^xsd:integer;
-    ex:isOutputOf ex:OCC_AE_1_measurement;
-    ex:hasArea ex:Area_DC.
+    rdfs:label "Total Employment for OCC AE 1";
+    ex:numericValue "68440"^^xsd:int;
+    ex:isOutputOf ex:OCC_AerospaceEngineer_1_measurement;
+    ex:hasArea ex:Area_US.
 
 #2
-ex:OCC_AerospaceEngineer_2 a ex:Role;
-    rdfs:label "OCC: Aerospace Engineer 2"@en ;
-    skos:defintion "OCC Aerospace Engineer entry 2"@en ;
+ex:OCC_AerospaceEngineer_2 a obo:BFO_0000023;
+    rdfs:label "OCC aerospace engineer 2";
+    skos:defintion "OCC Aerospace Engineer entry 2";
     ex:oGroup "detailed"^^xsd:string ;
-    ex:ownCode "own_code_b"^^xsd:string;
+    ex:ownCode "1235"^^xsd:int;
     ex:isAbout ex::ArtifactDesign.
-ex:OCC_AE_2_measurement a ex:ActofMeasuring;
-    rdfs:label "Act of measuring for total employment 2"@en .
+ex:OCC_AerospaceEnginer_2_measurement a ex:ActofMeasuring;
+    rdfs:label "Act of measuring for total employment 2".
 ex:TotalEmployment_AE2 a ex:TotalEmployment;
-    rdfs:label "Total Employment for OCC AE 2"@en ;
-    ex:numericValue "68440"^^xsd:integer;
-    ex:isOutputOf ex:OCC_AE_2_measurement;
-    ex:hasArea ex:Area_DC.
+    rdfs:label "Total Employment for OCC AE 2";
+    ex:numericValue "68440"^^xsd:int;
+    ex:isOutputOf ex:OCC_AerospaceEngineer_2_measurement;
+    ex:hasArea ex:Area_US.
+
+
 #3
-ex:OCC_AerospaceEngineer_3 a ex:Role;
-    rdfs:label "OCC: Aerospace Engineer 3"@en ;
-    skos:definition "OCC Aerospace Engineer entry 3"@en ;
+ex:OCC_AerospaceEngineer_3 a obo:BFO_0000023;
+    rdfs:label "OCC aerospace engineer 3";
+    skos:definition "OCC Aerospace Engineer entry 3";
     ex:oGroup "detailed"^^xsd:string ;
-    ex:ownCode "own_code_c"^^xsd::string;
+    ex:ownCode "1235"^^xsd::string;
     ex:isAbout ex::ArtifactDesign.
-ex:OCC_AE_3_measurement a ex:ActofMeasuring;
-    rdfs:label "Act of measuring for total employment 3"@en .
+ex:OCC_AerospaceEngineer_3_measurement a ex:ActofMeasuring;
+    rdfs:label "Act of measuring for total employment 3".
 ex:TotalEmployment_AE3 a ex:TotalEmployment;
-    rdfs:label "Total Employment for OCC AE 3"@en ;
-    ex:numericValue "9060"^^xsd:integer;
-    ex:isOutputOf ex:OCC_AE_3_measurement  ;
-    ex:hasArea ex:Area_DC.
+    rdfs:label "Total Employment for OCC AE 3";
+    ex:numericValue "9060"^^xsd:int;
+    ex:isOutputOf ex:OCC_AerospaceEngineer_3_measurement;
+    ex:hasArea ex:Area_US.
