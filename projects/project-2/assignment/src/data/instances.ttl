@@ -148,5 +148,5 @@ ex:OCC_AE_3_measurement a ex:ActofMeasuring;
 ex:TotalEmployment_AE3 a ex:TotalEmployment;
     rdfs:label "Total Employment for OCC AE 3"@en ;
     ex:numericValue "9060"^^xsd:integer;
-    ex:isOutputOf ex:OCC_AE_3_measurement;
+    ex:isOutputOf ex:OCC_AE_3_measurement  ;
     ex:hasArea ex:Area_DC.

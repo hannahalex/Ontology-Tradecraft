@@ -15,7 +15,7 @@ ex: a owl:Ontology;
 #make CCO compliant
 obo:BFO_0000015 a owl:Class;
     rdfs:label "process"@en ;
-    skos:defintion "process "@en .
+    skos:defintion "process "@en   .
 obo:BFO_0000019 a owl:Class;
     rdfs:label "quality"@en ;
     skos:defintion "quality" @en .
