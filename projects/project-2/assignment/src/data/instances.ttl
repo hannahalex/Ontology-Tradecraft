@@ -5,39 +5,43 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix cco: <https://www.commoncoreontologies.org/> .
 
+ex:isOutputOf rdfs:label "is output of" .
+ex:inheresIn  rdfs:label "inheres in" .
+ex:ActOfAircraftProcessing rdfs:label "Act of Aircraft Processing" .
+ex:AdaptabilityEvaluation  rdfs:label "Adaptability Evaluation" .
+
 ####### TASK 1 #######
     ex:Airbus rdfs:label "Airbus" .
-
-    #Class A320NEO_Spec
-    ex:A320NEO_Spec a ex:ArtifactDesign ;
-        rdfs:label "Airbus A320NEO Spec"; 
-        ex:isAbout ex:A320NEO;
-        ex:hasManufactuer ex:Airbus; 
-        ex:hasLength "123.3"^^xsd:decimal  ;
-        ex:hasTailHeightFt "39.6"^^xsd:decimal ;
-        ex:hasModelFAA "Airbus A320"^^xsd:string ;
-        ex:hasModelBADA "Airbus A320-231"^^xsd:string .  
-
-    ex:A320NEO_Engine1 a ex:JetEngine;
-        rdfs:label "A320NEO_Engine1" .
-    ex:A320NEO_Engine2  a ex:JetEngine ;
-        rdfs:label "A320NEO_Eninge2" .
-    #Class Fixed Wing
+#Class Fixed Wing
     ex:A320NEO a ex:FixedWing ;
         rdfs:label "Airbus A320 NEO";
-        obo:BFO_0000178 ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
-        ex:hasManufactuer ex:Airbus;
+        ex:hasContinuantPart ex:A320NEO_Engine1, ex:A320NEO_Engine2 ;
+        ex:hasManufacturer ex:Airbus; 
         ex:hasLength "123.3"^^xsd:decimal  ;
         ex:hasTailHeightFt "39.6"^^xsd:decimal ;
         ex:hasModelFAA "Airbus A320"^^xsd:string ;
         ex:hasModelBADA "Airbus A320-231"^^xsd:string .       
 
+    #Class A320NEO_Spec
+    ex:A320NEO_Spec a ex:ArtifactDesign ;
+        rdfs:label "Airbus A320 NEO Spec"; 
+        ex:isAbout ex:A320NEO;
+        ex:hasManufacturer ex:Airbus; 
+        ex:hasLength "123.3"^^xsd:decimal  ;
+        ex:hasTailHeightFt "39.6"^^xsd:decimal ;
+        ex:hasModelFAA "Airbus A320"^^xsd:string ;
+        ex:hasModelBADA "Airbus A320-231"^^xsd:string .  
+
+    ex:A320NEO_Engine1 a ex:JetEngine; rdfs:label "A320 NEO Engine 1" .
+    ex:A320NEO_Engine2  a ex:JetEngine ; rdfs:label "A320 NEO Eninge 2" .
+
+    
 ####### TASK 2 #######
     #A321_111 is a Fixedwing??
     ex:A321-111 a ex:FixedWing ;
         rdfs:label "Airbus A321-111" ;
-        ex:prescribes ex:A321_111_MaxApproachDesign .
-        ex:hasManufactuer rdfs:label "Airbus" .
+        ex:prescribes ex:A321_111_MaxApproachDesign ;
+        ex:hasManufactuer ex:Airbus.
     #why can't i change these 2 around?
     
     #it has a design
