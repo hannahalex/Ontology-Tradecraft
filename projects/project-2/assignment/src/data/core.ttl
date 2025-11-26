@@ -61,7 +61,7 @@ ex:MeasurementUnit a owl:Class;
 
 ex:ActofAircraftProcessing a owl:Class;
     rdfs:subClassOf obo:BFO_0000015 ;
-    rdfs:label "Act of aircraft processing"; 
+    rdfs:label "Act of Aircraft Processing"; 
     skos:definition "A process to analyzed aircraft artifacts" .
 
 ex:AdaptabilityEvaluation a owl:Class;
@@ -85,11 +85,11 @@ obo:BFO_0000178 rdf:type owl:ObjectProperty;
     skos:definition "Relates a continuat to one if its continuant parts" .
 
 cco:ont00001808 a owl:ObjectProperty ;
-    rdfs:label "is About"; 
+    rdfs:label "is about"; 
     skos:definition "Relates to something" .
 
 ex:isTemporalPartof a owl:ObjectProperty; 
-    rdfs:label "is Temporal part of"; 
+    rdfs:label "is temporal part of"; 
     skos:definition "Relates an occurent to a larger occurant which is a temporal part" .
 
 cco:ont00000120 a owl:ObjectProperty;
@@ -104,7 +104,7 @@ cco:ont00001947 a owl:ObjectProperty;
     skos:definition "A measurement of an entity. " . 
 
 ex:hasArea a owl:ObjectProperty; 
-    rdfs:label "has Area"; 
+    rdfs:label "has area"; 
     skos:definition "Relates to the length times width." . 
 obo:BFO_0000055 a owl:ObjectProperty;
     rdfs:label "realizes";
@@ -119,11 +119,11 @@ obo:BFO_0000197 a owl:ObjectProperty;
     
 ###### Datatype Properties ###### 
 ex:oGroup a owl:DatatypeProperty;
-    rdfs:label "O Group"; 
+    rdfs:label "o group"; 
     skos:definition "data headers string" . 
 
 ex:ownCode a owl:DatatypeProperty;
-    rdfs:label "own Code" ;
+    rdfs:label "own code" ;
     skos:definition "A string of instruction" . 
 
 ex:hasModelBADA a owl:DatatypeProperty;
@@ -136,13 +136,15 @@ ex:hasModelBADA a owl:DatatypeProperty;
     rdfs:label "has Model FAA";
     skos:definition "a FAA model" . 
 
-ex:hasLengthFT a owl:DatatypeProperty;
-    rdfs:range xsd:decimal; 
-    rdfs:label "has length FT";
-    skos:definition "The overall lenght in feet " . 
-
 ex:hasTailHeightFt a owl:DatatypeProperty ;
-  rdfs:label "has Tail HeightFt"@en ;
+  rdfs:label "has Tail Height Ft"@en ;
   rdfs:range xsd:decimal ;
-  skos:definition "Tail height measured in feet."@en .
+  skos:definition "has Tail Height FT."@en .
+
+ex:hasLengthFt a owl:DatatypeProperty;
+    rdfs:range xsd:decimal; 
+    rdfs:label "has Length Ft";
+    skos:definition " has Length Ft" . 
+
+
 
