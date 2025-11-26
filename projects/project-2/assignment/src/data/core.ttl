@@ -80,7 +80,7 @@ ex:TotalEmployment a owl:Class;
     skos:definition "A quality of total employment" .
 
 ###### Object Properties ###### 
-obo:BFO_0000178 rdf:type owl:ObjectProperty;
+ex:hasContinuantPart rdf:type owl:ObjectProperty;
     rdfs:label "has continuant part"; 
     skos:definition "Relates a continuat to one if its continuant parts" .
 
@@ -94,7 +94,7 @@ ex:isTemporalPartof a owl:ObjectProperty;
 
 cco:ont00000120 a owl:ObjectProperty;
     rdfs:label " is measurement unit of"; 
-    skos:definition "Relates a unit specification "  .
+    skos:definition "is measurement unit of "  .
 
 cco:ont00001942 a owl:ObjectProperty;
     rdfs:label "prescribes"; 
