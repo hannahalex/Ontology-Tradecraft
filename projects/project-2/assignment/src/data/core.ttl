@@ -92,9 +92,9 @@ ex:isTemporalPartof a owl:ObjectProperty;
     rdfs:label "is temporal part of"; 
     skos:definition "Relates an occurent to a larger occurant which is a temporal part" .
 
-cco:ont00000120 a owl:ObjectProperty;
+ex:isMeasurementUnitOf a owl:ObjectProperty;
     rdfs:label " is measurement unit of"; 
-    skos:definition "is measurement unit of "  .
+    skos:definition "is measurement unit of " .
 
 cco:ont00001942 a owl:ObjectProperty;
     rdfs:label "prescribes"; 
