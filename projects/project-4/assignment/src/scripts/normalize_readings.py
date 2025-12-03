@@ -97,7 +97,7 @@ UNIT_MAP = {
     "OHM": "ohm",
 }
 
-df["unit_label"] = df["unit_label"].str.map(UNIT_MAP).fillna(df["unit_label"])
+df["unit_label"] = df["unit_label"].map(UNIT_MAP).fillna(df["unit_label"])
 
 
 # Drop rows with missing critical values
