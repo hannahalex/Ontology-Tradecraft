@@ -113,7 +113,7 @@ def normalize_csv_sensor(path_a) -> pd.DataFrame:
     #standardize
     df_a["artifact_id"] = df_a["artifact_id"].map(standardize_artifact_id)
     df_a["sdc_kind"] = df_a["sdc_kind"].map(standardize_kind)
-    df_a["value"] = float(df_a["value"])
+    df_a["value"] = df_a["value"]
     df_a["timestamp"] = df_a["timestamp"].map(time_to_utc)
     
     return df_a
