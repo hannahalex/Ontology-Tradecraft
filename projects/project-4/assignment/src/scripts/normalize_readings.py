@@ -3,6 +3,8 @@ import json
 from dateutil import parser as dateparser
 from pathlib import Path
 import datetime
+from datetime import datetime
+import pytz
 
 ############# varibles and constants ##################
 
@@ -40,53 +42,86 @@ kind_map = {"temperature": "temperature",
 def standardize_artifact_id(id: str) -> str: 
     if id is None:
         return None
+    id =str(id).strip()
+    id = id.replace("", "-")
+    return id
 
 
 def standardize_kind(kind: str) -> str: 
    if kind is None:
         return None
+   new_kind = str(kind).strip().lower()
+   key = kind_map.get(new_kind)
+   return key 
+
 
 def standardize_unit(unit: str) -> str: 
    if unit is None:
         return None
+   unit = str(unit).strip()
+   mapped_key = UNIT_MAP.get(unit, UNIT_MAP )
+   return mapped_key
 
 def timestamp(time: str) -> pd.Timestamp:
    if time is None:
         return pd.NaT
+   timestamp = pd.to_datetime(time, utc=True).strftime()
+   return timestamp
 
 #coordinated universal time UTC? according to test...
 def time_to_utc(time: str) -> str:
-    #  try:
-    #     dt = dateparser.parse(str(x))
+    #defined timezone for buffalo
+    our_timezone = pytz.timezone('America/New York')
+
+    #local time string
+    naive_dt = datetime.strptime(time,"%m/%d/%y %H:%M")
+
+    #localize buffalo timezone
+    local = our_timezone.localize(naive_dt)
+
+    #convert to UTC
+    utc = local.astimezone(pytz.UTC).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
+    # dt = dateparser.parse(str(x))
+    # try:
     #     if dt.tzinfo is None:
+    #         # You can choose a policy; here we treat naive as UTC
+    #         import datetime, pytz
     #         dt = dt.replace(tzinfo=datetime.timezone.utc)
-    #     return dt.astimezone(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
+    #     return dt.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
     # except Exception:
     #     return None
-
-
-    #df["timestamp"] = df["timestamp"].apply(to_iso8601)
-
-
-
+    return utc
+ 
 ############ noramlize functions ##############
 
-def normalize_csv_sensor() -> pd.DataFrame:
-    # df_a = pd.read_csv(IN_A, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])# Map columns to canonical names (EDIT to match the actual headers)
-    # df_a = df_a.rename(columns={
-    #     "Device Name": "artifact_id",
-    #     "Reading Type": "sdc_kind",
-    #     "Units": "unit_label",
-    #     "Reading Value": "value",
-    #     "Time (Local)": "timestamp",
-    # })
-    # # Keep only canonical columns that exist
-    # df_a = df_a[[c for c in ["artifact_id","sdc_kind","unit_label","value","timestamp"] if c in df_a.columns]]
+def normalize_csv_sensor(path_a) -> pd.DataFrame:
+    df_a = pd.read_csv(path_a, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])# Map columns to canonical names (EDIT to match the actual headers)
+    
+    df_a = df_a.rename(
+        columns={
+        "Device Name": "artifact_id",
+        "Reading Type": "sdc_kind",
+        "Units": "unit_label",
+        "Reading Value": "value",
+        "Time (Local)": "timestamp",
+    })
+    # Keep only canonical columns that exist
+    df_a = df_a[[c for c in ["artifact_id","sdc_kind","unit_label","value","timestamp"] if c in df_a.columns]]
+    
+    #standardize
+    df_a["artifact_id"] = df_a["artifact_id"].map(standardize_artifact_id)
+    df_a["sdc_kind"] = df_a["sdc_kind"].map(standardize_kind)
+    df_a["value"] = float(df_a["value"])
+    df_a["timestamp"] = df_a["timestamp"].map(time_to_utc)
+    
+    return df_a
 
-def normalize_json_sensor() -> pd.DataFrame:
+def normalize_json_sensor(path_b) -> pd.DataFrame:
      # Load the sensor_B.json file
-    sensor_b_path =  Path("src/data/sensor_B.json")
-    with open(sensor_b_path, "r", encoding="utf-8") as f:
+    path_b = Path(path_b)
+    with open(path_b, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     # Extract structured records from the nested JSON
@@ -105,26 +140,26 @@ def normalize_json_sensor() -> pd.DataFrame:
                 "value": value,
                 "timestamp": timestamp
             })
+    df_b = pd.DataFrame(records)
+    return df_b
 
 def standardize_to_si(df):
     # PSI  to kPa
-    mask_psi = df.unit_label == 'psi'
-    df.loc[mask_psi, 'value'] = df.loc[mask_psi, 'value'] * 6.89476 * 1000
-    df.loc[mask_psi, 'unit_label'] = 'Pa'
+    psi_value = df.unit_label == 'psi'
+    df.loc[psi_value, 'value'] = df.loc[psi_value, 'value'] * 6.89476 * 1000
+    df.loc[psi_value, 'unit_label'] = 'Pa'
 
     #  kPa  to Pa
-    mask_psi = df.unit_label == 'kPa'
-    df.loc[mask_psi, 'value'] = df.loc[mask_psi, 'value'] * 1000
-    df.loc[mask_psi, 'unit_label'] = 'Pa'
-    # Convert to DataFrame
-    df_b = pd.DataFrame(records)
-
+    psi_value = df.unit_label == 'kPa'
+    df.loc[psi_value, 'value'] = df.loc[psi_value, 'value'] * 1000
+    df.loc[psi_value, 'unit_label'] = 'Pa'
     
+    return df 
 
 def main(): 
     data_a  = Path("src/data/sensor_A.csv")
     data_b = Path("src/data/sensor_B.json")
-    output = Path("src/data/readings_normalized.csv")
+    OUT = Path("src/data/readings_normalized.csv")
 
     #check if data_a and data_b exist
     df_a = normalize_csv_sensor(data_a)
@@ -136,12 +171,11 @@ def main():
     df_a= df_a.dropna(subset=["artifact_id","sdc_kind","unit_label","value","timestamp"])
     df_b= df_b.dropna(subset=["artifact_id","sdc_kind","unit_label","value","timestamp"])
 
-    for col in ["artifact_id","sdc_kind","unit_label"]:
-        df[col] = df[col].astype(str).str.strip()
-
-
     #make one dataframe
     df = pd.concat([df_a, df_b], ignore_index=True)
+
+    for col in ["artifact_id","sdc_kind","unit_label"]:
+        df[col] = df[col].astype(str).str.strip()
 
     #making value into number type
     df["value"] = pd.to_numeric(df["value"], errors="coerce")
@@ -149,7 +183,6 @@ def main():
     #standardized unit label
     df["unit_label"] = df["unit_label"].map(standardize_unit)
     #df["unit_label"] = df["unit_label"].map(UNIT_MAP).fillna(df["unit_label"])
-
 
     #sort values
     df = df.sort_values(["artifact_id", "timestamp"]).reset_index(drop=True)
