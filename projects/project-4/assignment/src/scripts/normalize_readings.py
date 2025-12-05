@@ -43,6 +43,10 @@ def standardize_artifact_id(id: str) -> str:
     if id is None:
         return None
     id =str(id).strip()
+
+    parts = id.split()
+    id = " ".join(parts)
+    
     id = id.replace("", "-")
     return id
 
