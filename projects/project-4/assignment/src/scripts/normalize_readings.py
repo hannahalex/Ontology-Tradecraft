@@ -46,7 +46,7 @@ def standardize_artifact_id(id: str) -> str:
 
     parts = id.split()
     id = " ".join(parts)
-    
+
     id = id.replace("", "-")
     return id
 
@@ -55,7 +55,7 @@ def standardize_kind(kind: str) -> str:
    if kind is None:
         return None
    new_kind = str(kind).strip().lower()
-   key = kind_map.get(new_kind)
+   key = kind_map.get(new_kind, new_kind)
    return key 
 
 
@@ -63,14 +63,15 @@ def standardize_unit(unit: str) -> str:
    if unit is None:
         return None
    unit = str(unit).strip()
-   mapped_key = UNIT_MAP.get(unit, UNIT_MAP )
+   mapped_key = UNIT_MAP.get(unit, UNIT_MAP.get(unit.upper(),UNIT_MAP.get(unit)) )
    return mapped_key
+
 
 def timestamp(time: str) -> pd.Timestamp:
    if time is None:
         return pd.NaT
-   timestamp = pd.to_datetime(time, utc=True).strftime()
-   return timestamp
+   ts = pd.to_datetime(time, utc=True).strftime()
+   return ts
 
 #coordinated universal time UTC? according to test...
 def time_to_utc(time: str) -> str:
@@ -147,16 +148,20 @@ def normalize_json_sensor(path_b) -> pd.DataFrame:
     df_b = pd.DataFrame(records)
     return df_b
 
-def standardize_to_si(df):
+def standardize_si(df):
+    f_value = df.unit_label == 'F'
+    df.loc[f_value, 'value'] = (df.loc[f_value, 'value'] - 32) * 5 / 9
+    df.loc[f_value, 'unit_label'] = 'C'
+   
     # PSI  to kPa
     psi_value = df.unit_label == 'psi'
     df.loc[psi_value, 'value'] = df.loc[psi_value, 'value'] * 6.89476 * 1000
     df.loc[psi_value, 'unit_label'] = 'Pa'
 
     #  kPa  to Pa
-    psi_value = df.unit_label == 'kPa'
-    df.loc[psi_value, 'value'] = df.loc[psi_value, 'value'] * 1000
-    df.loc[psi_value, 'unit_label'] = 'Pa'
+    kpa_value = df.unit_label == 'kPa'
+    df.loc[kpa_value, 'value'] = df.loc[kpa_value, 'value'] * 1000
+    df.loc[kpa_value, 'unit_label'] = 'Pa'
     
     return df 
 
@@ -192,9 +197,9 @@ def main():
     df = df.sort_values(["artifact_id", "timestamp"]).reset_index(drop=True)
 
     #standardize units to SI
-    df = standardize_to_si(df)
+    df = standardize_si(df)
 
-    #output dataframe
+    #output data frame
     OUT.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUT, index=False)
     print(f"Wrote {OUT} with {len(df)} rows.")
