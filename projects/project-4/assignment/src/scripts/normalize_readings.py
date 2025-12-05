@@ -71,7 +71,7 @@ def timestamp(time: str) -> pd.Timestamp:
 #coordinated universal time UTC? according to test...
 def time_to_utc(time: str) -> str:
     #defined timezone for buffalo
-    our_timezone = pytz.timezone('America/New York')
+    our_timezone = pytz.timezone('America/New_York')
 
     #local time string
     naive_dt = datetime.strptime(time,"%m/%d/%y %H:%M")
