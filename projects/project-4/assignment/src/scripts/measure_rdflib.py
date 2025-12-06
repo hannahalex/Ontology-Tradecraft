@@ -33,7 +33,6 @@ for index, row in df.iterrows():
     unit_label_uri= ex[unit_label]
     value_uri= ex[value]
 
-
     #adding to graph/conforming to design model
     #subject, predicate,object(the class i am assingning to the subject))
     #

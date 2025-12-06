@@ -47,7 +47,7 @@ def standardize_artifact_id(id: str) -> str:
     parts = id.split()
     id = " ".join(parts)
 
-    id = id.replace("", "-")
+    id = id.replace( " ", "-")
     return id
 
 
