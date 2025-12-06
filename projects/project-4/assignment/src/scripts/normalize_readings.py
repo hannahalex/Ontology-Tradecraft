@@ -55,7 +55,9 @@ def standardize_kind(kind: str) -> str:
    if kind is None:
         return None
    new_kind = str(kind).strip().lower()
-   key = kind_map.get(new_kind, new_kind)
+   key = kind_map.get(new_kind )
+
+   #if kind is none, get the row and remove from data
    return key 
 
 
@@ -98,7 +100,12 @@ def time_to_utc(time: str) -> str:
     # except Exception:
     #     return None
     return utc
- 
+
+def standardize_value(x): 
+    if x is None or "":
+        return None
+    return float(x)
+
 ############ noramlize functions ##############
 
 def normalize_csv_sensor(path_a) -> pd.DataFrame:
@@ -118,7 +125,7 @@ def normalize_csv_sensor(path_a) -> pd.DataFrame:
     #standardize
     df_a["artifact_id"] = df_a["artifact_id"].map(standardize_artifact_id)
     df_a["sdc_kind"] = df_a["sdc_kind"].map(standardize_kind)
-    df_a["value"] = df_a["value"]
+    df_a["value"] = df_a["value"].map(standardize_value)
     df_a["timestamp"] = df_a["timestamp"].map(time_to_utc)
     
     return df_a
