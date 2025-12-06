@@ -102,9 +102,12 @@ def time_to_utc(time: str) -> str:
     return utc
 
 def standardize_value(x): 
-    if x is None or "":
+    try:
+        if x is None or "":
+            return None
+        return float(x)
+    except Exception: 
         return None
-    return float(x)
 
 ############ noramlize functions ##############
 
