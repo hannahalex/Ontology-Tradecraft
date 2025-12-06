@@ -1,8 +1,11 @@
 import pandas as pd
 from  rdflib import Graph, Namespace, RDF, Literal, RDFS
+from pathlib import Path
 
 #read data from readings_normalized.csv
-df = pd.read_csv("../data/readings_normalized.csv")
+df = pd.read_csv(Path("src/data/readings_normalized.csv"), dtype=str, keep_default_na=False)
+#df_a = pd.read_csv(path_a, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])# Map columns to canonical names (EDIT to match the actual headers)
+
 print("this is df", df.head())
 
 #new rdf graph
